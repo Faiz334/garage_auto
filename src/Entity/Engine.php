@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\BrandRepository;
+use App\Repository\EngineRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: BrandRepository::class)]
-class Brand
+#[ORM\Entity(repositoryClass: EngineRepository::class)]
+class Engine
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,21 +14,21 @@ class Brand
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $marque = null;
+    private ?string $energie = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMarque(): ?string
+    public function getEnergie(): ?string
     {
-        return $this->marque;
+        return $this->energie;
     }
 
-    public function setMarque(string $marque): static
+    public function setEnergie(string $energie): static
     {
-        $this->marque = $marque;
+        $this->energie = $energie;
 
         return $this;
     }

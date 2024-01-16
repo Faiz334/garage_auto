@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\BrandRepository;
+use App\Repository\GearboxRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: BrandRepository::class)]
-class Brand
+#[ORM\Entity(repositoryClass: GearboxRepository::class)]
+class Gearbox
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,21 +14,21 @@ class Brand
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $marque = null;
+    private ?string $Boite = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMarque(): ?string
+    public function getBoite(): ?string
     {
-        return $this->marque;
+        return $this->Boite;
     }
 
-    public function setMarque(string $marque): static
+    public function setBoite(string $Boite): static
     {
-        $this->marque = $marque;
+        $this->Boite = $Boite;
 
         return $this;
     }

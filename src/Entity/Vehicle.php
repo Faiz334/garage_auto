@@ -17,7 +17,7 @@ class Vehicle
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column]
@@ -29,11 +29,14 @@ class Vehicle
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Date = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $marque = null;
+    #[ORM\ManyToOne]
+    private ?Brand $marque = null;
 
-    #[ORM\ManyToOne(inversedBy: 'marque')]
-    private ?Brand $brand = null;
+    #[ORM\ManyToOne]
+    private ?Engine $energie = null;
+
+    #[ORM\ManyToOne]
+    private ?Gearbox $boite = null;
 
     public function getId(): ?int
     {
@@ -57,7 +60,7 @@ class Vehicle
         return $this->description;
     }
 
-    public function setDescription(?string $description): static
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
@@ -100,26 +103,38 @@ class Vehicle
         return $this;
     }
 
-    public function getMarque(): ?string
+    public function getMarque(): ?Brand
     {
         return $this->marque;
     }
 
-    public function setMarque(string $marque): static
+    public function setMarque(?Brand $marque): static
     {
         $this->marque = $marque;
 
         return $this;
     }
 
-    public function getBrand(): ?Brand
+    public function getEnergie(): ?Engine
     {
-        return $this->brand;
+        return $this->energie;
     }
 
-    public function setBrand(?Brand $brand): static
+    public function setEnergie(?Engine $energie): static
     {
-        $this->brand = $brand;
+        $this->energie = $energie;
+
+        return $this;
+    }
+
+    public function getBoite(): ?Gearbox
+    {
+        return $this->boite;
+    }
+
+    public function setBoite(?Gearbox $boite): static
+    {
+        $this->boite = $boite;
 
         return $this;
     }
