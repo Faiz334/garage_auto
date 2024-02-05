@@ -10,17 +10,17 @@ use App\Repository\OpeningTimeRepository;
 use App\Entity\Vehicle;
 use App\Repository\VehicleRepository;
 
-class VehicleController extends AbstractController
+
+class CarController extends AbstractController
 {
-    #[Route('/voitures', name: 'app_vehicle')]
-    public function index(VehicleRepository $vehicleRepository,OpeningTimeRepository $openingTimeRepository): Response
+    #[Route('/car/{id}', name: 'app_car')]
+    public function show(Vehicle $vehicle,VehicleRepository $vehicleRepository,OpeningTimeRepository $openingTimeRepository): Response
     {
         $openingTimes = $openingTimeRepository->findAll();
-        $vehicles = $vehicleRepository->findAll();
 
-        return $this->render('vehicles/all.html.twig', [
-            'controller_name' => 'VehicleController',
-            'vehicles' => $vehicles,
+        return $this->render('car/car.html.twig', [
+            'controller_name' => 'CarController',
+            'vehicle' => $vehicle,
             'openingTimes' => $openingTimes,
         ]);
     }

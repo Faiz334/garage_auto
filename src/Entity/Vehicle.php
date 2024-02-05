@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\VehicleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 #[ORM\Entity(repositoryClass: VehicleRepository::class)]
+#[Vich\Uploadable]
 class Vehicle
 {
     #[ORM\Id]
@@ -37,6 +42,12 @@ class Vehicle
 
     #[ORM\ManyToOne]
     private ?Gearbox $boite = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'vehicle_image', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     public function getId(): ?int
     {
@@ -138,4 +149,34 @@ class Vehicle
 
         return $this;
     }
+    
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): static
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            // It's important to update the asset field to trigger the file upload
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
 }

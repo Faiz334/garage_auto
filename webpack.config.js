@@ -20,8 +20,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
-    .addEntry('bootstrap', 'bootstrap')
+    .addEntry('app', ['./assets/app.js', 'bootstrap'])
+    
 
     .enableStimulusBridge('./assets/controllers.json')
 
@@ -46,9 +46,9 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
+   //  .configureBabel((config) => {
+     //    config.plugins.push('@babel/a-babel-plugin');
+     //})
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {

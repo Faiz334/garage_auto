@@ -1,23 +1,25 @@
-import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
+
 import './styles/app.scss'
 
 
+import jquery from 'jquery';
 const $ = require('jquery');
-// this "modifies" the jquery module: adding behavior to it
-// the bootstrap module doesn't export/return anything
-require('bootstrap');
+global.$ = global.jQuery = $;
 
-// or you can include specific pieces
-require('bootstrap/js/dist/tooltip');
-require('bootstrap/js/dist/popover');
+import { createPopper } from '@popperjs/core';
 
+// Bootstrap JS
+import 'bootstrap/dist/js/bootstrap.bundle';
+
+// start the Stimulus application
+import './bootstrap';
+ 
+import { Tooltip, Toast, Popover } from 'bootstrap';
+global.createPopper = createPopper;
+
+// Toggle
 $(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
-});
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉')
+    $('.navbar-toggler').click(function() {
+      $('.navbar-collapse').collapse('toggle');
+    });
+  });

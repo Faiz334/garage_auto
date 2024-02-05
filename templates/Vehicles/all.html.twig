@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+       {% for vehicle in vehicles %}
+                <div>
+                    {% include 'base/card.html.twig' with { vehicles } %}
+            </div>
+       </div>
+<div>   
+ {% endfor %}       
+{% endblock %}

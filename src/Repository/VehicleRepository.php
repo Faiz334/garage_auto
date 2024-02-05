@@ -24,6 +24,16 @@ class VehicleRepository extends ServiceEntityRepository
 //    /**
 //     * @return Vehicle[] Returns an array of Vehicle objects
 //     */
+
+      public function lastTree()
+          {
+              return $this->createQueryBuilder('b')
+                  ->orderBy('b.id', 'DESC')
+                  ->setMaxResults(3)
+                  ->getQuery()
+                  ->getResult()
+              ;
+          }
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('v')

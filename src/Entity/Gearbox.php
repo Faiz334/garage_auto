@@ -32,4 +32,9 @@ class Gearbox
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->Boite;
+    }
 }
