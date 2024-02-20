@@ -1,50 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<br> 
-
-
-
+    <br>
     <div class="container">
-    <div class="d-flex justify-content-end mb-3">
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Trier
-  </button>
-  <ul class="dropdown-menu">
-        <li><a href="{{ path('app_vehicle', {'order_by': 'price', 'order': 'ASC'}) }}">Prix croissant</a></li>
-        <li><a href="{{ path('app_vehicle', {'order_by': 'price', 'order': 'DESC'}) }}">Prix décroissant</a></li>
-  </ul>
-</div>
-</div>
+        <div class="d-flex justify-content-end mb-3">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Trier
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('app_vehicle', {'order_by': 'price', 'order': 'ASC'}) }}">Prix croissant</a></li>
+                    <li><a href="{{ path('app_vehicle', {'order_by': 'price', 'order': 'DESC'}) }}">Prix décroissant</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-3">
-                    <div class="filter-group">
-                        <h3>Plage de prix</h3>
-                    </div>
-                   <form id="filterForm">
-    <label for="minPrice">Prix min:</label>
-    <input type="number" id="minPrice" name="minPrice" value="0">
-    <label for="maxPrice">Prix max:</label>
-    <input type="number" id="maxPrice" name="maxPrice" value="100000">
-    <button type="submit">Filtrer</button>
-</form>
-                                  
+                <div class="filter-group">
+                </div>
+                <h4>Boite de vitesse</h4>
+                {% for gearbox in gearboxs %}
+                    <input type="checkbox" name="gearbox" value="{{ gearbox.boite }}" id="brand-{{ gearbox.id }}">
+                    <label for="gearbox-{{ gearbox.id }}">{{ gearbox.boite }}</label>
+                {% endfor %}
+                <br>
+                <h4>Plage de prix</h4>
+                <form id="filterForm">
+                    <label for="minPrice">Prix min:</label>
+                    <input type="number" id="minPrice" name="minPrice" value="0">
+                    <label for="maxPrice">Prix max:</label>
+                    <input type="number" id="maxPrice" name="maxPrice" value="100000">
+                    <button type="submit">Filtrer</button>
+                </form>
             </div>
             <div class="col-md-9" id="vehicle1">
-            <div id="vehicle-list-container">
-                <div class="row row-cols-1 row-cols-md-3 g-4" id="vehicle-list">
-                    {% for vehicle in vehicles %}
-                                <div class="vehicle" data-price="{{ vehicle.prix }}">
-                                    {% include 'base/card.html.twig' with { 'vehicle': vehicle } %}
-                                </div>
-                    {% endfor %}
+                <div id="vehicle-list-container">
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="vehicle-list">
+                        {% for vehicle in vehicles %}
+                            <div class="vehicle" data-price="{{ vehicle.prix }}">
+                                {% include 'base/card.html.twig' with { 'vehicle': vehicle } %}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
    <script>

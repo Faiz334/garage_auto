@@ -23,6 +23,7 @@ class VehicleController extends AbstractController
     {
         // Récupérer les paramètres de filtrage de la requête GET
         $openingTimes = $openingTimeRepository->findAll();
+        $gearboxs = $gearboxRepository->findAll();
         $minPrice = $request->query->get('min_price');
         $maxPrice = $request->query->get('max_price');
         $order = $request->query->get('order');
@@ -39,6 +40,7 @@ class VehicleController extends AbstractController
         return $this->render('vehicles/all.html.twig', [
             'vehicles' => $vehicles,
             'openingTimes' => $openingTimes,
+            'gearboxs' => $gearboxs,
         ]);
     }
 

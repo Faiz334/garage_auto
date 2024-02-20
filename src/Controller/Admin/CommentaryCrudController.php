@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Commentary;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -23,7 +23,7 @@ class CommentaryCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
-            TextEditorField::new('description'),
+            TextareaField::new('description'),
             IntegerField::new('note')
             ->setFormTypeOptions([
                 'attr' => [
@@ -32,7 +32,6 @@ class CommentaryCrudController extends AbstractCrudController
                 ]
             ]),
             DateTimeField::new('createdAt')
-            ->hideOnForm(),
         ];
     }
     

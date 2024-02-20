@@ -5,9 +5,9 @@
             <h3 class="card-title">{{ vehicle.marque }} {{ vehicle.titre }}</h3>
             <p class="card-text">{{ vehicle.marque }} | {{ vehicle.date|date('Y') }} | {{ vehicle.kilometrage }} Km | {{ vehicle.boite }} | {{ vehicle.energie }}</p>
             <hr />
-            <h4 class="card-title">{{ vehicle.prix / 100 }} €</h4>
+            <h4 class="card-title">{{ vehicle.prix}} €</h4>
             <div class="text-center">
-                <a href="{{ path('app_car', {'id': vehicle.id}) }}" class="btn btn-primary ">Voir l'Annonce</a>
+                <a href="{{ path('app_car', {'id': vehicle.id}) }}" class="btn btn-danger ">Voir l'Annonce</a>
             </div>
         </div>
     </div>

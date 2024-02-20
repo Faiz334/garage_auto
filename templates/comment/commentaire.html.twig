@@ -3,6 +3,7 @@
 {% block title %}Garage Auto{% endblock %}
 
 {% block body %}
+<br>
  <div class="container">
   <h3 id="reply-title" class="comment-reply-title">Emettre un avis</h3>
   {{ form_start(commentary_form, {'attr': {'class': 'comment-form'}}) }}
@@ -24,6 +25,15 @@
     </div>
   {{ form_end(commentary_form) }}
 </div>
+
+{% for commentaries in commentaries %}
+        <div class="container mt-5">
+            <p>Écrit par : {{ commentaries.nom }}</p>
+            <p>Note : {{ commentaries.note }}/5</p>
+            <p>{{ commentaries.description }}</p>
+            <hr>
+        </div>
+    {% endfor %}
 
 {% endblock %}
 
