@@ -35,7 +35,7 @@ class VehicleCrudController extends AbstractCrudController
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
             ImageField::new('file')->setBasePath('/uploads/vehicles/images')->onlyOnIndex(),
             TextEditorField::new('description'),
-            MoneyField::new('prix')->setCurrency('EUR'),
+            IntegerField::new('prix'),
             DateField::new('date')->setFormat('yyyy'),
             IntegerField::new('kilometrage'),
             AssociationField::new('energie'),

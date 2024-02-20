@@ -2,29 +2,27 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Contact;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactFormType;
-use App\Entity\OpeningTime;
 use App\Repository\OpeningTimeRepository;
-use App\Entity\Vehicle;
-use App\Repository\VehicleRepository;
+use App\Entity\OpeningTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 
-
-class CarController extends AbstractController
+class ContactController extends AbstractController
 {
-    #[Route('/car/{id}', name: 'app_car')]
-    public function show(PersistenceManagerRegistry $doctrine, EntityManagerInterface $entityManager,Request $request,Vehicle $vehicle,VehicleRepository $vehicleRepository,OpeningTimeRepository $openingTimeRepository,$id ): Response
+    #[Route('/contact', name: 'app_contact')]
+    public function index( PersistenceManagerRegistry $doctrine, EntityManagerInterface $entityManager, OpeningTimeRepository $openingTimeRepository,Request $request): Response
     {
-        $openingTimes = $openingTimeRepository->findAll();
+
         $contact = new Contact();
         $form = $this->createForm(ContactFormType::class, $contact);
         $form->handleRequest($request);
+        $openingTimes = $openingTimeRepository->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -34,11 +32,11 @@ class CarController extends AbstractController
             
             $this->addFlash('success', 'Votre Message a bien été envoyée !');
 
+            return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('car/car.html.twig', [
-            'controller_name' => 'CarController',
-            'vehicle' => $vehicle,
+        return $this->render('contact/index.html.twig', [
+            'controller_name' => 'ContactController',
             'openingTimes' => $openingTimes,
             'form' => $form->createView(),
         ]);

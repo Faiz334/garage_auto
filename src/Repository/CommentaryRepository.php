@@ -25,11 +25,11 @@ class CommentaryRepository extends ServiceEntityRepository
 //     * @return Commentary[] Returns an array of Commentary objects
 //     */
       
-      public function lastTree()
+      public function lastFive()
       {
           return $this->createQueryBuilder('b')
               ->orderBy('b.id', 'DESC')
-              ->setMaxResults(3)
+              ->setMaxResults(5)
               ->getQuery()
               ->getResult()
           ;

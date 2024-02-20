@@ -1,7 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
 body {
-    background-color: skyblue;
+    background-color: #e9eaed;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+
+#barservice{
+    background-color: #E63946;
 }
 
 .openingtime {

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage Auto{% endblock %}
+
+{% block body %}
+ <div class="container">
+  <h3 id="reply-title" class="comment-reply-title">Emettre un avis</h3>
+  {{ form_start(commentary_form, {'attr': {'class': 'comment-form'}}) }}
+    <div class="form-group">
+      {{ form_label(commentary_form.description) }}
+      {{ form_widget(commentary_form.description) }}
+    </div>
+    <div class="form-group col-md-2">
+      {{ form_label(commentary_form.nom) }}
+      {{ form_widget(commentary_form.nom) }}
+    </div>
+    <div class="form-group col-md-1">
+      {{ form_label(commentary_form.note) }}
+      {{ form_widget(commentary_form.note) }}
+    </div>
+    <br>
+    <div class="form-group">
+      {{ form_widget(commentary_form.submit) }}
+    </div>
+  {{ form_end(commentary_form) }}
+</div>
+
+{% endblock %}
+

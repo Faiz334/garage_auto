@@ -16,6 +16,7 @@ use App\Entity\Engine;
 use App\Entity\Brand;
 use App\Entity\Gearbox;
 use App\Entity\Commentary;
+use App\Entity\Service;
 use App\Entity\Contact;
 
 
@@ -56,5 +57,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contact', 'fas fa-message', Contact::class);
 
         yield MenuItem::linkToCrud('Horaires', 'fas fa-clock', OpeningTime::class);
+
+        yield MenuItem::linkToCrud('Services', 'fas fa-clock', Service::class);
+
+        if ($this->isGranted('ROLE_ADMIN')){
+
+            yield MenuItem::subMenu('Utlisateur', 'fas fa-user',)->setSubItems([
+                MenuItem::linkToCrud('Tout les Utlisateurs','fas fa-user', User::class),
+                MenuItem::linkToCrud('Ajouter','fas fa-plus', User::class)->setAction(Crud::PAGE_NEW)
+        ]);}
     }
 }

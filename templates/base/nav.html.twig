@@ -1,28 +1,37 @@
- <div>
+<div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">garage</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{path('app_vehicle')}}">Voitures</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Avis</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{path('admin')}}">Admin</a>
-          </li>
-        </ul>
-      </div>
+        <div class="container"> <!-- Ajout d'un conteneur pour centrer le contenu de la barre de navigation -->
+            <a class="navbar-brand mr-auto" href="/"> <!-- Utilisation de mr-auto pour pousser le logo à gauche -->
+                <img src="/imageMain/vparrotnav.png" class="navbar-brand-img" alt="...">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav"> <!-- Utilisation de justify-content-end pour aligner les éléments de la barre de navigation à droite -->
+                <ul class="navbar-nav">
+                 <li class="nav-item">
+                        <a class="nav-link" href="{{path('app_login')}}"><i class="fas fa-user"></i></a> <!-- Ajout de l'icône utilisateur -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('app_vehicle')}}">Voitures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_commentary') }}">Avis</a>
+                    </li>
+                    {% if is_granted('ROLE_STAFF') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </nav>
- </div>
+</div>

@@ -12,15 +12,7 @@
 
 {% block body %}
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+   
 
    <section class="vh-100">
   <div class="container-fluid">
@@ -29,9 +21,18 @@
       <div class="col-sm-6">
         <div class="px-5 ms-xl-4">
           <div class="mb-5">
+           {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
           <br>
           <div class="mb-5 text-center">
-          <img src="/img/quaiAlogo1.png" class="navbar-brand-img" alt="..." >
+          <img src="/imageMain/garagelogin.png" class="navbar-brand-img" alt="..." style="object-fit: cover; height: 200px;">
           </div>
           </div>
           <!-- Formulaire de connexion -->

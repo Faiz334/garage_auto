@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Vehicle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\OrderBy;
 
 /**
  * @extends ServiceEntityRepository<Vehicle>
@@ -34,6 +35,58 @@ class VehicleRepository extends ServiceEntityRepository
                   ->getResult()
               ;
           }
+
+
+          public function findAllSortedByPrice($order = 'ASC')
+          {
+              return $this->createQueryBuilder('v')
+                  ->orderBy('v.prix', $order)
+                  ->getQuery()
+                  ->getResult();
+          }
+      
+ /**
+     * Récupère les véhicules dans une plage de prix donnée.
+     *
+     * @param int $minPrice
+     * @param int $maxPrice
+     * @return Vehicle[]
+     */
+    public function findByPriceRange($minPrice, $maxPrice): array
+    
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.prix >= :minPrice')
+            ->andWhere('v.prix <= :maxPrice')
+            ->setParameter('minPrice', $minPrice)
+            ->setParameter('maxPrice', $maxPrice)
+            ->getQuery()
+            ->getResult();
+    }
+
+      public function findByFilters($filters)
+        {
+          $qb = $this->createQueryBuilder('v');
+  
+  
+          // Filtrer par date maximale
+          if (isset($filters['maxKilometrage'])) {
+            $qb->andWhere('v.kilometrage <= :maxKilometrage')
+               ->setParameter('maxKilometrage', $filters['maxKilometrage']);
+          }
+
+           // Filtrer par prix maximal
+           if (isset($filters['maxPrix'])) {
+            $qb->andWhere('v.prix <= :maxPrix')
+               ->setParameter('maxPrix', $filters['maxPrix']);
+        }
+  
+        
+          // Exécutez la requête et retournez les résultats
+          return $qb->getQuery()->getResult();
+      }
+
+      }
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('v')
@@ -55,4 +108,4 @@ class VehicleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

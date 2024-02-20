@@ -7,9 +7,9 @@
     <div class="card text-center">
         <img src="{{ vich_uploader_asset(vehicle, 'imageFile') }}" class="card-img-top mx-auto mt-4" alt="Vehicle Image" style="max-width: 900px;">
         <div class="card-body">
-            <h2 class="card-title">{{ vehicle.titre }}</h2>
+            <h2 class="card-title">{{ vehicle.marque }} {{ vehicle.titre }}</h2>
             <p class="card-text">
-                {{ vehicle.date|date('Y-m-d') }} | {{ vehicle.kilometrage }} Km | {{ vehicle.boite }} | {{ vehicle.energie }}
+                {{ vehicle.date|date('Y') }} | {{ vehicle.kilometrage }} Km | {{ vehicle.boite }} | {{ vehicle.energie }}
             </p>
             <hr />
             <h4 class="card-title">{{ vehicle.prix }} €</h4>
@@ -24,9 +24,13 @@
         <h3>Spécificités du véhicule</h3>
         <ul class="list-group">
             <li class="list-group-item">Marque: {{ vehicle.marque }}</li>
-            <li class="list-group-item">Année: {{ vehicle.date|date('Y-m-d') }}</li>
+            <li class="list-group-item">Date de mise en circulation: {{ vehicle.date|date('Y-m-d') }}</li>
+            <li class="list-group-item">Kilometrage: {{ vehicle.kilometrage }} Km</li>
+            <li class="list-group-item">Boite: {{ vehicle.boite }}</li>
+            <li class="list-group-item">Energie: {{ vehicle.energie}}</li>
+            <li class="list-group-item">Prix: {{ vehicle.prix}} €</li>
         </ul>
     </div>
 </div>
-
+{%  include 'contact/contact2.html.twig'  %}
 {% endblock %}

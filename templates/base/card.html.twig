@@ -1,14 +1,14 @@
-<div class="col">
-    <div class="card" style="width: 18rem;">
-      <img src= {{ vich_uploader_asset(vehicle, 'imageFile') }} class="card-img-top" alt="...">
-      <div class="card-body">
-        <h2 class="card-title">{{ vehicle.titre}}</h2>
-        <p class="card-text">{{ vehicle.date|date('Y-m-d')}} | {{ vehicle.kilometrage}} | {{ vehicle.boite}} | {{ vehicle.energie}}</p>
-        <hr />
-        <h4 class="card-title">{{ vehicle.prix}} €</h4>
-        <div class="text-center">
-          <a href="{{ path('app_car', {'id': vehicle.id}) }}" class="btn btn-primary ">Voir l'Annonce</a>
+<div class="mx-auto">
+    <div class="card h-100 text-center mt-3 pb-3">
+        <img src="{{ vich_uploader_asset(vehicle, 'imageFile') }}" class="card-img-top" alt="IMAGE NON DISPONIBLE" style="object-fit: cover; height: 300px;">
+        <div class="card-body">
+            <h3 class="card-title">{{ vehicle.marque }} {{ vehicle.titre }}</h3>
+            <p class="card-text">{{ vehicle.marque }} | {{ vehicle.date|date('Y') }} | {{ vehicle.kilometrage }} Km | {{ vehicle.boite }} | {{ vehicle.energie }}</p>
+            <hr />
+            <h4 class="card-title">{{ vehicle.prix / 100 }} €</h4>
+            <div class="text-center">
+                <a href="{{ path('app_car', {'id': vehicle.id}) }}" class="btn btn-primary ">Voir l'Annonce</a>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
